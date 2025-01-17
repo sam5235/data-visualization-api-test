@@ -1,0 +1,35 @@
+{
+    "name": "Azure Developer CLI",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "moby": true,
+            "installDockerBuildx": true,
+            "version": "latest",
+            "dockerDashComposeVersion": "latest"
+        },
+        "ghcr.io/nikiforovall/devcontainer-features/dotnet-aspire:1": {},
+        "ghcr.io/nikiforovall/devcontainer-features/dotnet-csharpier:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-mssql.mssql",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "postCreateCommand": "wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && sudo apt-get update && sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev && echo 'export PATH=\"$PATH:/opt/mssql-tools18/bin\"' >> ~/.bashrc",
+    "remoteUser": "vscode",
+    "hostRequirements": {
+        "memory": "8gb"
+    },
+    "forwardPorts": [
+      1433,
+      8080
+    ]
+}
+  
