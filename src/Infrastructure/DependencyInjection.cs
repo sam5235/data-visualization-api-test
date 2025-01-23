@@ -3,6 +3,7 @@ using data_visualization_api.Domain.Constants;
 using data_visualization_api.Infrastructure.Data;
 using data_visualization_api.Infrastructure.Data.Interceptors;
 using data_visualization_api.Infrastructure.Identity;
+using data_visualization_api.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -48,6 +49,8 @@ public static class DependencyInjection
 
         services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));
+
+        services.AddScoped<IIndicatorRepository, IndicatorRepository>();
 
         return services;
     }

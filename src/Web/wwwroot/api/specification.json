@@ -6,6 +6,36 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Indicators/indicators/{topicId}": {
+      "get": {
+        "tags": [
+          "Indicators"
+        ],
+        "operationId": "GetIndicatorsByTopicId",
+        "parameters": [
+          {
+            "name": "topicId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/TodoItems": {
       "get": {
         "tags": [
