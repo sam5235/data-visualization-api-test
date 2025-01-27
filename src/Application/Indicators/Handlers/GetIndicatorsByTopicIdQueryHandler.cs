@@ -3,20 +3,22 @@ using data_visualization_api.Application.Indicators.Queries;
 
 namespace data_visualization_api.Application.Indicators.Handlers;
 
-public class GetIndicatorsByTopicIdQueryHandler(IIndicatorRepository indicatorRepository) : IRequestHandler<GetIndicatorsByTopicIdQuery, List<IndicatorDto>>
+public class GetIndicatorsByTopicIdQueryHandler : IRequestHandler<GetIndicatorsByTopicIdQuery, IndicatorsVm>
 {
-  private readonly IIndicatorRepository _indicatorRepository = indicatorRepository;
+  private readonly IIndicatorRepository _indicatorRepository;
+  private readonly IMapper _mapper;
 
-  public async Task<List<IndicatorDto>> Handle(GetIndicatorsByTopicIdQuery request, CancellationToken cancellationToken)
+  public GetIndicatorsByTopicIdQueryHandler(IIndicatorRepository indicatorRepository, IMapper mapper)
+  {
+    _indicatorRepository = indicatorRepository;
+    _mapper = mapper;
+  }
+
+  public async Task<IndicatorsVm> Handle(GetIndicatorsByTopicIdQuery request, CancellationToken cancellationToken)
   {
     var indicators = await _indicatorRepository.GetIndicatorsByTopicIdAsync(request.TopicId);
 
-    return [.. indicators.Select(i => new IndicatorDto
-        {
-            Id = i.Id,
-            NameEn = i.NameEn,
-            DescriptionEn = i.DescriptionEn,
-            UnitEn = i.UnitEn
-        })];
+    var indicatorDtos = _mapper.Map<List<IndicatorDto>>(indicators);
+    return new IndicatorsVm { Indicators = indicatorDtos };
   }
 }

@@ -105,5 +105,35 @@ public class ApplicationDbContextInitialiser
 
             await _context.SaveChangesAsync();
         }
+
+        //Seed Indicators
+        if (!_context.Indicators.Any())
+        {
+            _context.Indicators.Add(new Indicator
+            {
+                RootIndicatorId = 1,
+                ShortNameEn = "Sample EN",
+                ShortNameFr = "Sample FR",
+                NameEn = "Sample EN",
+                NameFr = "Sample FR",
+                DescriptionEn = "Sample EN",
+                DescriptionFr = "Sample FR",
+                ModeEn = "Sample EN",
+                ModeFr = "Sample FR",
+                UnitEn = "Sample EN",
+                UnitFr = "Sample FR",
+                ScaleEn = "Sample EN",
+                ScaleFr = "Sample FR",
+                Multiplier = 1.0,
+                RoundLevel = 1,
+                TopicIds = [1, 2, 3],
+                Created = DateTimeOffset.Now,
+                CreatedBy = "Administrator",
+                LastModified = DateTimeOffset.Now,
+                LastModifiedBy = "Administrator"
+            });
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -7,7 +7,6 @@ public class Indicators : EndpointGroupBase
   public override void Map(WebApplication app)
   {
     app.MapGroup(this)
-       .RequireAuthorization()
        .MapGet(GetIndicatorsByTopicId, "/indicators/{topicId:int:min(1)}");
   }
 

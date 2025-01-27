@@ -4,28 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace data_visualization_api.Infrastructure.Data.Repositories;
 
-public class IndicatorRepository : IIndicatorRepository
+public class IndicatorRepository(ApplicationDbContext context) : IIndicatorRepository
 {
-  private readonly ApplicationDbContext _context;
-
-  public IndicatorRepository(ApplicationDbContext context)
-  {
-    _context = context;
-  }
+  private readonly ApplicationDbContext _context = context;
 
   public async Task<IEnumerable<Indicator>> GetIndicatorsByTopicIdAsync(int topicId)
   {
-    return await _context.Indicators
-        .AsNoTracking()
-        .Where(i => i.TopicIds.Contains(topicId))
-        .ToListAsync();
-  }
+    try
+    {
+      var indicators = await Task.Run(() => _context.Indicators.AsEnumerable()
+           .Where(indicator => indicator.TopicIds.Any(t => t == topicId)).ToList());
 
-  public async Task<IEnumerable<Indicator>> GetIndicatorsByRootIdAsync(int rootId)
-  {
-    return await _context.Indicators
-        .AsNoTracking()
-        .Where(i => i.RootIndicatorId == rootId)
-        .ToListAsync();
+      return indicators.Count == 0 ? throw new InvalidOperationException("Indicators not found") : (IEnumerable<Indicator>)indicators;
+    }
+    catch (Exception e)
+    {
+      Console.WriteLine(e); throw;
+    }
   }
 }
