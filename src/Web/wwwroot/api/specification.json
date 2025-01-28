@@ -6,6 +6,19 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Areas/areas": {
+      "get": {
+        "tags": [
+          "Areas"
+        ],
+        "operationId": "GetAreas",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/Indicators/indicators/{topicId}": {
       "get": {
         "tags": [
@@ -365,6 +378,19 @@
             "JWT": []
           }
         ]
+      }
+    },
+    "/api/Topics/topics": {
+      "get": {
+        "tags": [
+          "Topics"
+        ],
+        "operationId": "GetTopics",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
       }
     },
     "/api/Users/register": {

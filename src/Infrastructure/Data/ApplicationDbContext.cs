@@ -17,6 +17,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Indicator> Indicators => Set<Indicator>();
 
+    public DbSet<Topic> Topics => Set<Topic>();
+
+    public DbSet<Area> Areas => Set<Area>();
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

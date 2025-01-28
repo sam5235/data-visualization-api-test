@@ -10,5 +10,9 @@ public interface IApplicationDbContext
 
     DbSet<Indicator> Indicators { get; }
 
+    DbSet<Topic> Topics { get; }
+
+    DbSet<Area> Areas { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

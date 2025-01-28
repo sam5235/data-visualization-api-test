@@ -1,6 +1,5 @@
 using data_visualization_api.Application.Common.Interfaces;
 using data_visualization_api.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace data_visualization_api.Infrastructure.Data.Repositories;
 

@@ -52,6 +52,10 @@ public static class DependencyInjection
 
         services.AddScoped<IIndicatorRepository, IndicatorRepository>();
 
+        services.AddScoped<ITopicRepository, TopicRepository>();
+
+        services.AddScoped<IAreaRepository, AreaRepository>();
+
         return services;
     }
 }
