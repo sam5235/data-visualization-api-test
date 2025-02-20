@@ -19,6 +19,69 @@
         }
       }
     },
+    "/api/Charts": {
+      "post": {
+        "tags": [
+          "Charts"
+        ],
+        "operationId": "CreateChart",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChartCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/Charts/charts": {
+      "get": {
+        "tags": [
+          "Charts"
+        ],
+        "operationId": "GetCharts",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/Charts/charts/{chartId}": {
+      "get": {
+        "tags": [
+          "Charts"
+        ],
+        "operationId": "GetChartById",
+        "parameters": [
+          {
+            "name": "chartId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/Indicators/indicators/{topicId}": {
       "get": {
         "tags": [
@@ -808,6 +871,249 @@
   },
   "components": {
     "schemas": {
+      "CreateChartCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "chart": {
+            "$ref": "#/components/schemas/ChartDto"
+          }
+        }
+      },
+      "ChartDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "selectedChartType": {
+            "type": "string"
+          },
+          "selectedIndicatorName": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "legendOptions": {
+            "type": "string"
+          },
+          "startYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "endYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "xAxisLabel": {
+            "type": "string"
+          },
+          "yAxisLabel": {
+            "type": "string"
+          },
+          "chartTitle": {
+            "type": "string"
+          },
+          "selectedIndicators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubIndicatorDto"
+            }
+          },
+          "selectedTopics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopicDto"
+            }
+          }
+        }
+      },
+      "SubIndicatorDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rootIndicatorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "replId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shortNameEn": {
+            "type": "string"
+          },
+          "shortNameFr": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "nameFr": {
+            "type": "string"
+          },
+          "descriptionEn": {
+            "type": "string"
+          },
+          "descriptionFr": {
+            "type": "string"
+          },
+          "modeEn": {
+            "type": "string"
+          },
+          "modeFr": {
+            "type": "string"
+          },
+          "unitEn": {
+            "type": "string"
+          },
+          "unitFr": {
+            "type": "string"
+          },
+          "scaleEn": {
+            "type": "string"
+          },
+          "scaleFr": {
+            "type": "string"
+          },
+          "multiplier": {
+            "type": "string"
+          },
+          "coverageCountry": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coverageSubRegion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roundLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "edgeTimeSeriesData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EdgeTimeSeriesDataDto"
+            }
+          },
+          "timeSeriesData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataDto"
+            }
+          },
+          "topicIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "themeIndicatorIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "sourcesIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "dataPoints": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "earliestYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latestYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coverage": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "EdgeTimeSeriesDataDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "countryId": {
+            "type": "string"
+          },
+          "countryName": {
+            "type": "string"
+          },
+          "yearData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataDto"
+            }
+          }
+        }
+      },
+      "TimeSeriesDataDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "TopicDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "topicId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "topicCode": {
+            "type": "string"
+          },
+          "topicEn": {
+            "type": "string"
+          },
+          "topicFr": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descriptionEn": {
+            "type": "string"
+          },
+          "descriptionFr": {
+            "type": "string"
+          },
+          "mainTopicEn": {
+            "type": "string"
+          },
+          "mainTopicFr": {
+            "type": "string"
+          }
+        }
+      },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",
         "additionalProperties": false,

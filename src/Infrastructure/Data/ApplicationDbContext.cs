@@ -21,6 +21,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Area> Areas => Set<Area>();
 
+    public DbSet<Chart> Charts => Set<Chart>();
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

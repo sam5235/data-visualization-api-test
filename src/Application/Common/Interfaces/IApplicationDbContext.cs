@@ -14,5 +14,7 @@ public interface IApplicationDbContext
 
     DbSet<Area> Areas { get; }
 
+    DbSet<Chart> Charts { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

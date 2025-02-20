@@ -56,6 +56,8 @@ public static class DependencyInjection
 
         services.AddScoped<IAreaRepository, AreaRepository>();
 
+        services.AddScoped<IChartRepository, ChartRepository>();
+
         return services;
     }
 }
