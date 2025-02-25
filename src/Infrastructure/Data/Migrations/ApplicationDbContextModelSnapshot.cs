@@ -155,7 +155,7 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("data_visualization_api.Domain.Entities.Area", b =>
+            modelBuilder.Entity("data_visualization_api.Domain.Entities.Chart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,7 +163,7 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AreaCode")
+                    b.Property<string>("ChartTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -173,8 +173,8 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Iso3")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EndYear")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("LastModified")
                         .HasColumnType("datetimeoffset");
@@ -182,105 +182,32 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameEn")
+                    b.Property<string>("SelectedChartType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameFr")
+                    b.Property<string>("SelectedIndicatorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StartYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Thumbnail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("XAxisLabel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YAxisLabel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Areas");
-                });
-
-            modelBuilder.Entity("data_visualization_api.Domain.Entities.Indicator", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriptionEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriptionFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("LastModified")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModeEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModeFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Multiplier")
-                        .HasColumnType("float");
-
-                    b.Property<string>("NameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RootIndicatorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoundLevel")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ScaleEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ScaleFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShortNameEn")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("ShortNameFr")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("TopicIds")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnitEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnitFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Indicators");
+                    b.ToTable("Charts");
                 });
 
             modelBuilder.Entity("data_visualization_api.Domain.Entities.TodoItem", b =>
@@ -358,66 +285,6 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TodoLists");
-                });
-
-            modelBuilder.Entity("data_visualization_api.Domain.Entities.Topic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriptionEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriptionFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("LastModified")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainTopicEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainTopicFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RootIndicatorIds")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TopicCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TopicEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TopicFr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Topics");
                 });
 
             modelBuilder.Entity("data_visualization_api.Infrastructure.Identity.ApplicationUser", b =>
@@ -534,6 +401,252 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("data_visualization_api.Domain.Entities.Chart", b =>
+                {
+                    b.OwnsMany("data_visualization_api.Domain.Entities.CountryData", "SelectedCountriesData", b1 =>
+                        {
+                            b1.Property<int>("ChartId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<int>("CountryId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("CountryName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("YearDataJson")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("YearData");
+
+                            b1.HasKey("ChartId", "Id");
+
+                            b1.ToTable("Charts");
+
+                            b1.ToJson("SelectedCountriesData");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChartId");
+                        });
+
+                    b.OwnsMany("data_visualization_api.Domain.Entities.Indicator", "SelectedIndicators", b1 =>
+                        {
+                            b1.Property<int>("ChartId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Coverage")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("CoverageCountry")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("CoverageSubRegion")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("DataPoints")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("DescriptionEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("DescriptionFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("EarliestYear")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("LatestYear")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("ModeEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("ModeFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("Multiplier")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("NameEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("NameFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("ReplId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("RootIndicatorId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("RoundLevel")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("ScaleEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("ScaleFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("ShortNameEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("ShortNameFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("TopicIds")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("UnitEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("UnitFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ChartId", "Id");
+
+                            b1.ToTable("Charts");
+
+                            b1.ToJson("SelectedIndicators");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChartId");
+                        });
+
+                    b.OwnsOne("data_visualization_api.Domain.Entities.LegendOptions", "LegendOptions", b1 =>
+                        {
+                            b1.Property<int>("ChartId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Align")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Left")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Orient")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<bool>("Show")
+                                .HasColumnType("bit");
+
+                            b1.Property<string>("Top")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ChartId");
+
+                            b1.ToTable("Charts");
+
+                            b1.ToJson("LegendOptions");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChartId");
+                        });
+
+                    b.OwnsMany("data_visualization_api.Domain.Entities.Topic", "SelectedTopics", b1 =>
+                        {
+                            b1.Property<int>("ChartId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("TopicId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            b1.Property<int>("CoverageCountryCount")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("CoverageSubRegionCount")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("DataPointsCount")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("DescriptionEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("DescriptionFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("EarliestYear")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("LatestYear")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("MainTopicEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("MainTopicFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("Order")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("SubIndicatorsCount")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("TopicCode")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("TopicEn")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("TopicFr")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("ChartId", "TopicId");
+
+                            b1.ToTable("Charts");
+
+                            b1.ToJson("SelectedTopics");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChartId");
+                        });
+
+                    b.Navigation("LegendOptions")
+                        .IsRequired();
+
+                    b.Navigation("SelectedCountriesData");
+
+                    b.Navigation("SelectedIndicators");
+
+                    b.Navigation("SelectedTopics");
                 });
 
             modelBuilder.Entity("data_visualization_api.Domain.Entities.TodoItem", b =>

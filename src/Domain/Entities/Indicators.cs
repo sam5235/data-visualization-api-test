@@ -1,9 +1,8 @@
 namespace data_visualization_api.Domain.Entities;
-
-public class SubIndicator : BaseAuditableEntity
+public class Indicator
 {
-  public int RootIndicatorId { get; set; }
   public int ReplId { get; set; }
+  public int RootIndicatorId { get; set; }
   public string ShortNameEn { get; set; } = string.Empty;
   public string ShortNameFr { get; set; } = string.Empty;
   public string NameEn { get; set; } = string.Empty;
@@ -16,15 +15,15 @@ public class SubIndicator : BaseAuditableEntity
   public string UnitFr { get; set; } = string.Empty;
   public string ScaleEn { get; set; } = string.Empty;
   public string ScaleFr { get; set; } = string.Empty;
-  public double Multiplier { get; set; }
-  public int RoundLevel { get; set; }
-  public int[] TopicIds { get; set; } = Array.Empty<int>();
+  public int Multiplier { get; set; }
   public int CoverageCountry { get; set; }
   public int CoverageSubRegion { get; set; }
-  public List<EdgeTimeSeriesData> EdgeTimeSeriesData { get; set; } = new();
-  public List<TimeSeriesData> TimeSeriesData { get; set; } = new();
-  public List<int> ThemeIndicatorIds { get; set; } = new();
-  public List<int> SourcesIds { get; set; } = new();
+  public int RoundLevel { get; set; }
+  public List<int> EdgeTimeSeriesData { get; } = [];
+  public List<int> TimeSeriesData { get; } = [];
+  public List<int> TopicIds { get; set; } = [];
+  public List<int> ThemeIndicatorIds { get; } = [];
+  public List<int> SourcesIds { get; } = [];
   public int DataPoints { get; set; }
   public int EarliestYear { get; set; }
   public int LatestYear { get; set; }

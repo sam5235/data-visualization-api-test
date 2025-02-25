@@ -1,15 +1,15 @@
-namespace data_visualization_api.Domain.Entities;
 
+namespace data_visualization_api.Domain.Entities;
 public class EdgeTimeSeriesData
 {
-  public int Id { get; set; } // Primary key
-  public string CountryId { get; set; } = string.Empty; // Unique identifier for the country
-  public string CountryName { get; set; } = string.Empty; // Name of the country
-
-  // Navigation property for time series data
-  public List<TimeSeriesData> YearData { get; set; } = new();
-
-  // Foreign key to the parent entity (SubIndicator)
-  public int SubIndicatorId { get; set; }
-  public SubIndicator SubIndicator { get; set; } = null!;
+  public int CountryId { get; set; }
+  public string CountryCode { get; set; } = string.Empty;
+  public string CountryEn { get; set; } = string.Empty;
+  public string CountryFr { get; set; } = string.Empty;
+  public int AreaType { get; set; }
+  public int RootIndicatorId { get; set; }
+  public int EarliestYear { get; set; }
+  public decimal EarliestYearValue { get; set; }
+  public int LatestYear { get; set; }
+  public decimal LatestYearValue { get; set; }
 }

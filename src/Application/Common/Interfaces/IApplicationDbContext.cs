@@ -8,12 +8,6 @@ public interface IApplicationDbContext
 
     DbSet<TodoItem> TodoItems { get; }
 
-    DbSet<Indicator> Indicators { get; }
-
-    DbSet<Topic> Topics { get; }
-
-    DbSet<Area> Areas { get; }
-
     DbSet<Chart> Charts { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);

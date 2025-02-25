@@ -1,12 +1,12 @@
 namespace data_visualization_api.Domain.Entities;
-
 public class TimeSeriesData
 {
-  public int Id { get; set; } // Primary key
-  public int Year { get; set; } // Key (year)
-  public double Value { get; set; } // Value (data point)
-
-  // Foreign key to the parent entity (EdgeTimeSeriesData)
-  public int EdgeTimeSeriesDataId { get; set; }
-  public EdgeTimeSeriesData EdgeTimeSeriesData { get; set; } = null!;
+  public int CountryId { get; set; }
+  public string CountryNameEn { get; set; } = string.Empty;
+  public string CountryNameFr { get; set; } = string.Empty;
+  public string CountryCode { get; set; } = string.Empty;
+  public int AreaType { get; set; }
+  public int RootIndicatorId { get; set; }
+  public int PeriodYear { get; set; }
+  public decimal PeriodValue { get; set; }
 }

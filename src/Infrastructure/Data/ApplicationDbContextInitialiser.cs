@@ -107,104 +107,104 @@ public class ApplicationDbContextInitialiser
         }
 
         //Seed Indicators
-        if (!_context.Indicators.Any())
-        {
-            _context.Indicators.Add(new Indicator
-            {
-                RootIndicatorId = 1,
-                ShortNameEn = "Sample EN",
-                ShortNameFr = "Sample FR",
-                NameEn = "Sample EN",
-                NameFr = "Sample FR",
-                DescriptionEn = "Sample EN",
-                DescriptionFr = "Sample FR",
-                ModeEn = "Sample EN",
-                ModeFr = "Sample FR",
-                UnitEn = "Sample EN",
-                UnitFr = "Sample FR",
-                ScaleEn = "Sample EN",
-                ScaleFr = "Sample FR",
-                Multiplier = 1.0,
-                RoundLevel = 1,
-                TopicIds = [1, 2, 3],
-                Created = DateTimeOffset.Now,
-                CreatedBy = "Administrator",
-                LastModified = DateTimeOffset.Now,
-                LastModifiedBy = "Administrator"
-            });
+        // if (!_context.Indicators.Any())
+        // {
+        //     _context.Indicators.Add(new Indicator
+        //     {
+        //         RootIndicatorId = 1,
+        //         ShortNameEn = "Sample EN",
+        //         ShortNameFr = "Sample FR",
+        //         NameEn = "Sample EN",
+        //         NameFr = "Sample FR",
+        //         DescriptionEn = "Sample EN",
+        //         DescriptionFr = "Sample FR",
+        //         ModeEn = "Sample EN",
+        //         ModeFr = "Sample FR",
+        //         UnitEn = "Sample EN",
+        //         UnitFr = "Sample FR",
+        //         ScaleEn = "Sample EN",
+        //         ScaleFr = "Sample FR",
+        //         Multiplier = 1.0,
+        //         RoundLevel = 1,
+        //         TopicIds = [1, 2, 3],
+        //         Created = DateTimeOffset.Now,
+        //         CreatedBy = "Administrator",
+        //         LastModified = DateTimeOffset.Now,
+        //         LastModifiedBy = "Administrator"
+        //     });
 
-            await _context.SaveChangesAsync();
-        }
+        //     await _context.SaveChangesAsync();
+        // }
 
         //Seed Topics
-        if (!_context.Topics.Any())
-        {
-            _context.Topics.AddRange(
-            new Topic
-            {
-                TopicCode = "T001",
-                TopicEn = "Economy",
-                TopicFr = "Économie",
-                DescriptionEn = "Topics related to economic indicators.",
-                DescriptionFr = "Sujets liés aux indicateurs économiques.",
-                MainTopicEn = "Economic Indicators",
-                MainTopicFr = "Indicateurs économiques",
-                Order = 1,
-                RootIndicatorIds = new[] { 101, 102 },
-                Created = DateTimeOffset.Now,
-                CreatedBy = "Administrator",
-                LastModified = DateTimeOffset.Now,
-                LastModifiedBy = "Administrator"
-            },
-            new Topic
-            {
-                TopicCode = "T002",
-                TopicEn = "Health",
-                TopicFr = "Santé",
-                DescriptionEn = "Topics related to health indicators.",
-                DescriptionFr = "Sujets liés aux indicateurs de santé.",
-                MainTopicEn = "Health Indicators",
-                MainTopicFr = "Indicateurs de santé",
-                Order = 2,
-                RootIndicatorIds = new[] { 201, 202 },
-                Created = DateTimeOffset.Now,
-                CreatedBy = "Administrator",
-                LastModified = DateTimeOffset.Now,
-                LastModifiedBy = "Administrator"
-            });
+        // if (!_context.Topics.Any())
+        // {
+        //     _context.Topics.AddRange(
+        //     new Topic
+        //     {
+        //         TopicCode = "T001",
+        //         TopicEn = "Economy",
+        //         TopicFr = "Économie",
+        //         DescriptionEn = "Topics related to economic indicators.",
+        //         DescriptionFr = "Sujets liés aux indicateurs économiques.",
+        //         MainTopicEn = "Economic Indicators",
+        //         MainTopicFr = "Indicateurs économiques",
+        //         Order = 1,
+        //         RootIndicatorIds = new[] { 101, 102 },
+        //         Created = DateTimeOffset.Now,
+        //         CreatedBy = "Administrator",
+        //         LastModified = DateTimeOffset.Now,
+        //         LastModifiedBy = "Administrator"
+        //     },
+        //     new Topic
+        //     {
+        //         TopicCode = "T002",
+        //         TopicEn = "Health",
+        //         TopicFr = "Santé",
+        //         DescriptionEn = "Topics related to health indicators.",
+        //         DescriptionFr = "Sujets liés aux indicateurs de santé.",
+        //         MainTopicEn = "Health Indicators",
+        //         MainTopicFr = "Indicateurs de santé",
+        //         Order = 2,
+        //         RootIndicatorIds = new[] { 201, 202 },
+        //         Created = DateTimeOffset.Now,
+        //         CreatedBy = "Administrator",
+        //         LastModified = DateTimeOffset.Now,
+        //         LastModifiedBy = "Administrator"
+        //     });
 
-            await _context.SaveChangesAsync();
-        }
+        //     await _context.SaveChangesAsync();
+        // }
 
         //Seed Areas Data
-        if (!_context.Areas.Any())
-        {
-            _context.Areas.AddRange(
-            new Area
-            {
-                AreaCode = "001",
-                NameEn = "Global",
-                NameFr = "Mondial",
-                Iso3 = null,
-                Created = DateTimeOffset.Now,
-                CreatedBy = "Administrator",
-                LastModified = DateTimeOffset.Now,
-                LastModifiedBy = "Administrator"
-            },
-            new Area
-            {
-                AreaCode = "US",
-                NameEn = "United States",
-                NameFr = "États-Unis",
-                Iso3 = "USA",
-                Created = DateTimeOffset.Now,
-                CreatedBy = "Administrator",
-                LastModified = DateTimeOffset.Now,
-                LastModifiedBy = "Administrator"
-            });
+        // if (!_context.Areas.Any())
+        // {
+        //     _context.Areas.AddRange(
+        //     new Area
+        //     {
+        //         AreaCode = "001",
+        //         NameEn = "Global",
+        //         NameFr = "Mondial",
+        //         Iso3 = null,
+        //         Created = DateTimeOffset.Now,
+        //         CreatedBy = "Administrator",
+        //         LastModified = DateTimeOffset.Now,
+        //         LastModifiedBy = "Administrator"
+        //     },
+        //     new Area
+        //     {
+        //         AreaCode = "US",
+        //         NameEn = "United States",
+        //         NameFr = "États-Unis",
+        //         Iso3 = "USA",
+        //         Created = DateTimeOffset.Now,
+        //         CreatedBy = "Administrator",
+        //         LastModified = DateTimeOffset.Now,
+        //         LastModifiedBy = "Administrator"
+        //     });
 
-            await _context.SaveChangesAsync();
-        }
+        //     await _context.SaveChangesAsync();
+        // }
 
     }
 }

@@ -15,14 +15,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
-    public DbSet<Indicator> Indicators => Set<Indicator>();
-
-    public DbSet<Topic> Topics => Set<Topic>();
-
-    public DbSet<Area> Areas => Set<Area>();
-
     public DbSet<Chart> Charts => Set<Chart>();
-
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

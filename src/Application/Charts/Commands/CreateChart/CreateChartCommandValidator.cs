@@ -11,16 +11,12 @@ public class CreateChartCommandValidator : AbstractValidator<CreateChartCommand>
   {
     _context = context;
 
-    RuleFor(v => v.Chart.ChartTitle)
-        .NotEmpty()
-        .MaximumLength(200)
-        .MustAsync(BeUniqueTitle)
-            .WithMessage("'{PropertyName}' must be unique.")
-            .WithErrorCode("Unique");
-
-    RuleFor(v => v.Chart.SelectedChartType)
+    RuleFor(v => v.SelectedChartType)
         .NotEmpty()
         .WithMessage("Chart type is required.");
+    RuleFor(v => v.ChartTitle)
+        .NotEmpty()
+        .MaximumLength(200);
   }
 
   public async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)
