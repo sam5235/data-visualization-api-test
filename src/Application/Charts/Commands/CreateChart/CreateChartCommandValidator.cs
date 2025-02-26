@@ -17,6 +17,18 @@ public class CreateChartCommandValidator : AbstractValidator<CreateChartCommand>
     RuleFor(v => v.ChartTitle)
         .NotEmpty()
         .MaximumLength(200);
+    RuleFor(x => x.SelectedChartType).NotEmpty().WithMessage("Chart type is required.");
+    RuleFor(x => x.SelectedIndicatorName).NotEmpty().WithMessage("Indicator name is required.");
+    RuleFor(x => x.ChartTitle).NotEmpty().WithMessage("Chart title is required.");
+    RuleFor(x => x.SelectedCountriesData)
+        .NotEmpty().WithMessage("At least one country must be selected.");
+    RuleFor(x => x.SelectedIndicators)
+        .NotEmpty().WithMessage("At least one indicator must be selected.");
+    RuleFor(x => x.SelectedTopics)
+        .NotEmpty().WithMessage("At least one topic must be selected.");
+    RuleFor(x => x.LegendOptions)
+        .NotEmpty().WithMessage("Legend options are required.");
+
   }
 
   public async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)

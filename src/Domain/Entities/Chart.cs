@@ -10,8 +10,8 @@ public class Chart : BaseAuditableEntity
   public string XAxisLabel { get; set; } = string.Empty;
   public string YAxisLabel { get; set; } = string.Empty;
   public string ChartTitle { get; set; } = string.Empty;
+  public List<int> SelectedIndicators { get; set; } = [];
+  public List<int> SelectedTopics { get; set; } = [];
   public List<CountryData> SelectedCountriesData { get; set; } = [];
-  public List<Indicator> SelectedIndicators { get; set; } = [];
-  public List<Topic> SelectedTopics { get; set; } = [];
   public LegendOptions LegendOptions { get; set; } = new();
 }

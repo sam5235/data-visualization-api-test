@@ -5,6 +5,6 @@ namespace data_visualization_api.Application.Common.Interfaces;
 public interface IChartRepository
 {
   Task<Chart?> GetChartByIdAsync(int id);
-  Task<ChartsVm> GetAllChartsAsync();
+  Task<IEnumerable<Chart>> GetAllChartsAsync();
   Task AddChartAsync(Chart chart);
 }

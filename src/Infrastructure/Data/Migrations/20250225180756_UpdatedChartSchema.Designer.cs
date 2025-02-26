@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using data_visualization_api.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using data_visualization_api.Infrastructure.Data;
 namespace data_visualization_api.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225180756_UpdatedChartSchema")]
+    partial class UpdatedChartSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,11 +193,11 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SelectedIndicators")
+                    b.Property<string>("SelectedTopics")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SelectedTopics")
+                    b.Property<string>("SeletedIndicators")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -429,9 +432,10 @@ namespace data_visualization_api.Infrastructure.Data.Migrations
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<string>("YearData")
+                            b1.Property<string>("YearDataJson")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("YearData");
 
                             b1.HasKey("ChartId", "Id");
 

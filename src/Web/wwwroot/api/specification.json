@@ -48,8 +48,39 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer",
-                  "format": "int32"
+                  "$ref": "#/components/schemas/ResultOfInteger"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Charts/{id}": {
+      "get": {
+        "tags": [
+          "Charts"
+        ],
+        "operationId": "GetChartById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChartDto"
                 }
               }
             }
@@ -856,22 +887,24 @@
           "chartTitle": {
             "type": "string"
           },
-          "selectedCountriesData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryDataDto"
-            }
-          },
           "selectedIndicators": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/IndicatorDto"
+              "type": "integer",
+              "format": "int32"
             }
           },
           "selectedTopics": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TopicDto"
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "selectedCountriesData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryDataDto"
             }
           },
           "legendOptions": {
@@ -899,182 +932,6 @@
           }
         }
       },
-      "IndicatorDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "replId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rootIndicatorId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "shortNameEn": {
-            "type": "string"
-          },
-          "shortNameFr": {
-            "type": "string"
-          },
-          "nameEn": {
-            "type": "string"
-          },
-          "nameFr": {
-            "type": "string"
-          },
-          "descriptionEn": {
-            "type": "string"
-          },
-          "descriptionFr": {
-            "type": "string"
-          },
-          "modeEn": {
-            "type": "string"
-          },
-          "modeFr": {
-            "type": "string"
-          },
-          "unitEn": {
-            "type": "string"
-          },
-          "unitFr": {
-            "type": "string"
-          },
-          "scaleEn": {
-            "type": "string"
-          },
-          "scaleFr": {
-            "type": "string"
-          },
-          "multiplier": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageCountry": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageSubRegion": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roundLevel": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "edgeTimeSeriesData": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "timeSeriesData": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "topicIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "themeIndicatorIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "sourcesIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "dataPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "earliestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "latestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverage": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "TopicDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "subIndicatorsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dataPointsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "earliestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "latestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageCountryCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageSubRegionCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "topicId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "topicCode": {
-            "type": "string"
-          },
-          "topicEn": {
-            "type": "string"
-          },
-          "topicFr": {
-            "type": "string"
-          },
-          "descriptionEn": {
-            "type": "string"
-          },
-          "descriptionFr": {
-            "type": "string"
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "mainTopicEn": {
-            "type": "string"
-          },
-          "mainTopicFr": {
-            "type": "string"
-          }
-        }
-      },
       "LegendOptionDto": {
         "type": "object",
         "additionalProperties": false,
@@ -1093,6 +950,25 @@
           },
           "top": {
             "type": "string"
+          }
+        }
+      },
+      "ResultOfInteger": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "succeeded": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -1128,22 +1004,24 @@
           "chartTitle": {
             "type": "string"
           },
-          "selectedCountriesData": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryData"
-            }
-          },
           "selectedIndicators": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Indicator"
+              "type": "integer",
+              "format": "int32"
             }
           },
           "selectedTopics": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Topic"
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "selectedCountriesData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryData"
             }
           },
           "legendOptions": {
@@ -1168,182 +1046,6 @@
               "type": "integer",
               "format": "int32"
             }
-          }
-        }
-      },
-      "Indicator": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "replId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rootIndicatorId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "shortNameEn": {
-            "type": "string"
-          },
-          "shortNameFr": {
-            "type": "string"
-          },
-          "nameEn": {
-            "type": "string"
-          },
-          "nameFr": {
-            "type": "string"
-          },
-          "descriptionEn": {
-            "type": "string"
-          },
-          "descriptionFr": {
-            "type": "string"
-          },
-          "modeEn": {
-            "type": "string"
-          },
-          "modeFr": {
-            "type": "string"
-          },
-          "unitEn": {
-            "type": "string"
-          },
-          "unitFr": {
-            "type": "string"
-          },
-          "scaleEn": {
-            "type": "string"
-          },
-          "scaleFr": {
-            "type": "string"
-          },
-          "multiplier": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageCountry": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageSubRegion": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roundLevel": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "edgeTimeSeriesData": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "timeSeriesData": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "topicIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "themeIndicatorIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "sourcesIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "dataPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "earliestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "latestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverage": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "Topic": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "subIndicatorsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dataPointsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "earliestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "latestYear": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageCountryCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "coverageSubRegionCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "topicId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "topicCode": {
-            "type": "string"
-          },
-          "topicEn": {
-            "type": "string"
-          },
-          "topicFr": {
-            "type": "string"
-          },
-          "descriptionEn": {
-            "type": "string"
-          },
-          "descriptionFr": {
-            "type": "string"
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "mainTopicEn": {
-            "type": "string"
-          },
-          "mainTopicFr": {
-            "type": "string"
           }
         }
       },

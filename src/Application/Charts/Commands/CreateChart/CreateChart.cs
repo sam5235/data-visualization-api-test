@@ -2,10 +2,11 @@ using MediatR;
 using data_visualization_api.Domain.Entities;
 using data_visualization_api.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
+using data_visualization_api.Application.Common.Models;
 
 namespace data_visualization_api.Application.Charts.Commands.CreateChart;
 
-public class CreateChartCommand : IRequest<int>
+public class CreateChartCommand : IRequest<Result<int>>
 {
   public string SelectedChartType { get; set; } = string.Empty;
   public string SelectedIndicatorName { get; set; } = string.Empty;
@@ -15,13 +16,14 @@ public class CreateChartCommand : IRequest<int>
   public string XAxisLabel { get; set; } = string.Empty;
   public string YAxisLabel { get; set; } = string.Empty;
   public string ChartTitle { get; set; } = string.Empty;
+  public List<int> SelectedIndicators { get; set; } = [];
+  public List<int> SelectedTopics { get; set; } = [];
+
   public List<CountryData> SelectedCountriesData { get; set; } = [];
-  public List<Indicator> SelectedIndicators { get; set; } = [];
-  public List<Topic> SelectedTopics { get; set; } = [];
   public LegendOptions LegendOptions { get; set; } = new();
 }
 
-public class CreateChartCommandHandler : IRequestHandler<CreateChartCommand, int>
+public class CreateChartCommandHandler : IRequestHandler<CreateChartCommand, Result<int>>
 {
   private readonly IChartRepository _repository;
   private readonly IMapper _mapper;
@@ -34,14 +36,19 @@ public class CreateChartCommandHandler : IRequestHandler<CreateChartCommand, int
     _logger = logger;
   }
 
-  public async Task<int> Handle(CreateChartCommand request, CancellationToken cancellationToken)
+  public async Task<Result<int>> Handle(CreateChartCommand request, CancellationToken cancellationToken)
   {
 
-    _logger.LogInformation("Creating a new Chart");
-    var chart = _mapper.Map<Chart>(request);
-    _logger.LogInformation("Adding the new Chart to the repository");
-    await _repository.AddChartAsync(chart);
-    _logger.LogInformation("New Chart created with Id: {0}", chart.Id);
-    return chart.Id;
+    try
+    {
+      var chart = _mapper.Map<Chart>(request);
+      await _repository.AddChartAsync(chart);
+      return Result<int>.Success(chart.Id);
+    }
+    catch (Exception ex)
+    {
+      _logger.LogError(ex, "An error occurred while creating the chart.");
+      return Result<int>.Failure("An error occurred while creating the chart.");
+    }
   }
 }

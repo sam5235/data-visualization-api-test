@@ -30,7 +30,7 @@ public class GetChartsQueryHandler : IRequestHandler<GetChartsQuery, ChartsVm>
       _logger.LogInformation("Mapping Charts to ChartDto");
       var chartDto = _mapper.Map<List<ChartDto>>(charts);
 
-      return new ChartsVm { Charts = chartDto };
+      return new ChartsVm { Charts = _mapper.Map<List<ChartDto>>(charts) };
     }
     catch (JsonException ex)
     {
