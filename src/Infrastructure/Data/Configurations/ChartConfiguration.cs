@@ -20,6 +20,8 @@ public class ChartConfiguration : IEntityTypeConfiguration<Chart>
         builder.Property(c => c.ChartTitle).IsRequired();
         builder.Property(c => c.SelectedIndicators).IsRequired();
         builder.Property(c => c.SelectedTopics).IsRequired();
+        builder.Property(c => c.Share).IsRequired();
+        builder.Property(c => c.Published).IsRequired();
 
         builder.OwnsOne(c => c.LegendOptions, lo => lo.ToJson());
         builder.OwnsMany(c => c.SelectedCountriesData, cd =>

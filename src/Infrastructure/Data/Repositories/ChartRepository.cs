@@ -3,9 +3,7 @@ using data_visualization_api.Infrastructure.Data;
 using data_visualization_api.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using AutoMapper.QueryableExtensions;
 using AutoMapper;
-using data_visualization_api.Application.Charts.Queries.GetCharts;
 
 namespace data_visualization_api.Infrastructure.Repositories;
 
@@ -49,6 +47,14 @@ public class ChartRepository : IChartRepository
   {
     _logger.LogInformation("Adding a new Chart to the repository");
     await _context.Charts.AddAsync(chart);
+    _logger.LogInformation("Saving changes to the database");
+    await _context.SaveChangesAsync();
+  }
+
+  public async Task DeleteChartAsync(Chart chart)
+  {
+    _logger.LogInformation("Removing a Chart from the repository");
+    _context.Charts.Remove(chart);
     _logger.LogInformation("Saving changes to the database");
     await _context.SaveChangesAsync();
   }

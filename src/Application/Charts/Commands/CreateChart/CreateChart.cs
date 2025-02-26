@@ -16,6 +16,8 @@ public class CreateChartCommand : IRequest<Result<int>>
   public string XAxisLabel { get; set; } = string.Empty;
   public string YAxisLabel { get; set; } = string.Empty;
   public string ChartTitle { get; set; } = string.Empty;
+  public bool Share { get; set; } = false;
+  public bool Published { get; set; } = false;
   public List<int> SelectedIndicators { get; set; } = [];
   public List<int> SelectedTopics { get; set; } = [];
 

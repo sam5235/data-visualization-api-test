@@ -10,6 +10,8 @@ public class ChartDto
   public string XAxisLabel { get; init; } = string.Empty;
   public string YAxisLabel { get; init; } = string.Empty;
   public string ChartTitle { get; init; } = string.Empty;
+  public bool Share { get; init; } = false;
+  public bool Published { get; init; } = false;
   public List<int> SelectedIndicators { get; init; } = [];
   public List<int> SelectedTopics { get; init; } = [];
 
