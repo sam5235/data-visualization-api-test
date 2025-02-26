@@ -51,6 +51,32 @@ public class ChartRepository : IChartRepository
     await _context.SaveChangesAsync();
   }
 
+  // public async Task UpdateChartAsync(Chart chart)
+  // {
+  //   _logger.LogInformation("Updating a Chart in the repository");
+  //   _context.Charts.Update(chart);
+  //   _logger.LogInformation("Saving changes to the database");
+  //   await _context.SaveChangesAsync();
+  // }
+  public async Task UpdateChartAsync(Chart chart)
+  {
+    try
+    {
+      _context.Entry(chart).State = EntityState.Modified;
+      await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+      if (!ChartExists(chart.Id))
+      {
+        throw new KeyNotFoundException("Chart not found");
+      }
+      throw;
+    }
+  }
+
+  private bool ChartExists(int id)
+      => _context.Charts.Any(e => e.Id == id);
   public async Task DeleteChartAsync(Chart chart)
   {
     _logger.LogInformation("Removing a Chart from the repository");

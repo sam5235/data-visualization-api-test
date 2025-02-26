@@ -3,6 +3,7 @@ using data_visualization_api.Application.Charts.Queries.GetCharts;
 using data_visualization_api.Application.Charts.Queries.GetChartById;
 using data_visualization_api.Application.Common.Models;
 using data_visualization_api.Application.Charts.Commands.DeleteChart;
+using data_visualization_api.Application.Charts.Commands.UpdateChart;
 
 namespace data_visualization_api.Web.Endpoints;
 
@@ -14,7 +15,8 @@ public class Charts : EndpointGroupBase
         .MapGet(GetCharts)
         .MapPost(CreateChart)
         .MapGet(GetChartById, "/{id}")
-        .MapDelete(DeleteChart, "/{id}");
+        .MapDelete(DeleteChart, "/{id}")
+        .MapPut(UpdateChart, "/{id}");
   }
 
   public Task<ChartsVm> GetCharts(ISender sender)
@@ -28,6 +30,15 @@ public class Charts : EndpointGroupBase
 
   public Task<Result<int>> CreateChart(ISender sender, CreateChartCommand command)
   {
+    return sender.Send(command);
+  }
+
+  public Task<Result<int>> UpdateChart(ISender sender, int id, UpdateChartCommand command)
+  {
+    if (id != command.Id)
+    {
+      return Task.FromResult(Result<int>.Failure("Id mismatch"));
+    }
     return sender.Send(command);
   }
 
