@@ -23,7 +23,7 @@ public class CountryDataDto
 {
   public int CountryId { get; init; }
   public string CountryName { get; init; } = string.Empty;
-  public Dictionary<string, int> YearData { get; init; } = [];
+  public Dictionary<string, decimal> YearData { get; init; } = [];
 }
 public class LegendOptionDto
 {
