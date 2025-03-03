@@ -1004,8 +1004,8 @@
           "yearData": {
             "type": "object",
             "additionalProperties": {
-              "type": "integer",
-              "format": "int32"
+              "type": "number",
+              "format": "decimal"
             }
           }
         }
@@ -1131,8 +1131,8 @@
           "yearData": {
             "type": "object",
             "additionalProperties": {
-              "type": "integer",
-              "format": "int32"
+              "type": "number",
+              "format": "decimal"
             }
           }
         }
