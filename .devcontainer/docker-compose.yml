@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rds
     volumes:
       - sqlserver_data:/var/opt/mssql
 
