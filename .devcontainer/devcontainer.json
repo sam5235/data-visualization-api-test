@@ -3,7 +3,6 @@
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",
-    
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "moby": true,
@@ -28,8 +27,8 @@
         "memory": "8gb"
     },
     "forwardPorts": [
-      1433,
-      8080
+        1433,
+        5000,
+        5001
     ]
 }
-  

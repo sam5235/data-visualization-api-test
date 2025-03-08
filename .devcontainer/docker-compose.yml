@@ -6,16 +6,32 @@ services:
     volumes:
       - ..:/workspace:cached
     command: sleep infinity
-    network_mode: service:db
+    # network_mode: service:db
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db,1433;Database=DataVisualization;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;MultipleActiveResultSets=true
+    networks:
+      - app_network
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=YourStrong@Passw0rds
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
     volumes:
       - sqlserver_data:/var/opt/mssql
+    networks:
+      - app_network
 
 volumes:
   sqlserver_data:
+
+
+networks:
+  app_network:
+    driver: bridge
